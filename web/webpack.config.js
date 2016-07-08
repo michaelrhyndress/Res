@@ -18,7 +18,7 @@ module.exports = {
 	context: __staticDir, //__dirname
 	devtool: debug ? "inline-sourcemap" : null,
 	entry: {
-		main: path.join(__scriptDir, "app", "main.js"),
+		resify__main: path.join(__scriptDir, "resify", "main.js"),
 		// base: [
 // 			path.join(__staticDir, "react/modules/Base/base"),
 // 		],

@@ -1,0 +1,12 @@
+db.sqlite3
+mydatabase
+venv
+env
+.env
+node_modules/
+__pycache__
+*.pyc
+webpack-stats.json
+bundles/
+node_modules/
+.DS_Store

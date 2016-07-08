@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import css from "../../scss/resify/main.scss"
 
 class Layout extends React.Component {
 	render() {
