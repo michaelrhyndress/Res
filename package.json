@@ -1,0 +1,39 @@
+{
+  "name": "resify",
+  "version": "1.0.0",
+  "description": "Resify ======",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelrhyndress/Resify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelrhyndress/Resify/issues"
+  },
+  "homepage": "https://github.com/michaelrhyndress/Resify#readme",
+  "devDependencies": {},
+  "dependencies": {
+	  "babel-loader": "^6.2.0",
+	  "babel-plugin-add-module-exports": "^0.2.1",
+	  "babel-plugin-react-html-attrs": "^2.0.0",
+	  "babel-preset-es2015": "^6.9.0",
+	  "babel-preset-react": "^6.3.13",
+      "css-loader": "^0.23.0",
+      "node-sass": "^3.4.2",
+      "react": "^0.14.6",
+      "react-dom": "^0.14.6",
+      "sass-loader": "^3.1.2",
+      "style-loader": "^0.13.0",
+	  "camelcase": "^2.0.1",
+	  "file-loader": "^0.8.5",
+	  "resolve-url-loader": "^1.4.3",
+	  "url-loader": "^0.5.7",
+      "webpack": "^1.12.9",
+      "webpack-bundle-tracker": "0.0.8"
+  }
+}
