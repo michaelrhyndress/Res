@@ -8,32 +8,36 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/michaelrhyndress/Resify.git"
+    "url": "git+https://github.com/michaelrhyndress/Res.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/michaelrhyndress/Resify/issues"
+    "url": "https://github.com/michaelrhyndress/Res/issues"
   },
-  "homepage": "https://github.com/michaelrhyndress/Resify#readme",
-  "devDependencies": {},
+  "homepage": "https://github.com/michaelrhyndress/Res#readme",
+  "devDependencies": {
+    "babel-loader": "^6.2.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-react-html-attrs": "^2.0.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.3.13",
+    "css-loader": "^0.23.0",
+    "node-sass": "^3.4.2",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "camelcase": "^2.0.1",
+    "file-loader": "^0.8.5",
+    "resolve-url-loader": "^1.4.3",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.9",
+    "webpack-bundle-tracker": "0.0.8"
+  },
   "dependencies": {
-	  "babel-loader": "^6.2.0",
-	  "babel-plugin-add-module-exports": "^0.2.1",
-	  "babel-plugin-react-html-attrs": "^2.0.0",
-	  "babel-preset-es2015": "^6.9.0",
-	  "babel-preset-react": "^6.3.13",
-      "css-loader": "^0.23.0",
-      "node-sass": "^3.4.2",
-      "react": "^0.14.6",
-      "react-dom": "^0.14.6",
-      "sass-loader": "^3.1.2",
-      "style-loader": "^0.13.0",
-	  "camelcase": "^2.0.1",
-	  "file-loader": "^0.8.5",
-	  "resolve-url-loader": "^1.4.3",
-	  "url-loader": "^0.5.7",
-      "webpack": "^1.12.9",
-      "webpack-bundle-tracker": "0.0.8"
+    "material-ui": "^0.15.0-beta.2",
+    "react": "^0.14.8",
+    "react-addons-create-fragment": "^15.2.1",
+    "react-addons-transition-group": "^15.2.1",
+    "react-dom": "^0.14.8"
   }
 }

@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from resify.views import Main
+from resify.views import Dashboard
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^convert/', include('lazysignup.urls')),
-    url(r'^', Main.as_view(), name="main"),
+    url(r'^', Dashboard.as_view(), name="dashboard"),
 ]

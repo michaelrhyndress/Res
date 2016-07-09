@@ -1,0 +1,1 @@
+export {EducationHistory} from "./EducationHistory";

@@ -1,0 +1,45 @@
+@import "./bootstrap-sass/stylesheets/bootstrap-custom";
+
+.resify__sidebar {
+	display: inline-block;
+	float: left;
+    width: 40%;
+	height: auto;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    	-ms-overflow-style: none;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), color 0.7s ease-out, opacity 1ms linear;
+	
+	&__footer {
+		.wrapper {
+			width: 100%;
+			text-align: center;
+			.left {
+				@include make-xs-column(11);
+				@include make-md-column(3);
+			}
+			.center {
+				@include make-xs-column(11);
+				@include make-md-column(3);
+				ul {
+					margin: 0;
+				    list-style: none;
+					font-size: 18px;
+					li {
+					    display: inline-block;
+					    padding-right: 10px;
+					    padding-left: 10px;
+					}
+				}
+			}
+			.right {
+				@include make-xs-column(11);
+				@include make-md-column(3);
+			}
+		}
+	}
+}
+
+.resify__sidebar--hidden {
+	display: none;
+}
