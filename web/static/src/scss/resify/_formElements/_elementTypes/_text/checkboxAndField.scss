@@ -1,0 +1,20 @@
+@import "../../../../partials/color-vars";
+
+.resify__form {
+	&__checkbox-field {
+		width:100%;
+		margin:15px auto;
+		div {
+			div {
+				text-align: center;
+			    width: 30px !important;
+			    margin-right: 50px !important;
+			}
+			label span.descriptive-text {
+				font-size: .95em;
+				color: #BABABA;
+				font-weight: 300;
+			}
+		}
+	}
+}

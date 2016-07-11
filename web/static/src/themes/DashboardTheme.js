@@ -15,7 +15,7 @@ export default {
     // accent2Color: pinkA400,
     // accent3Color: pinkA100,
     textColor: fullWhite,
-    // secondaryTextColor: fullWhite,
+    //secondaryTextColor: fullWhite,
     alternateTextColor: fullWhite,
     // canvasColor: '#303030',
     // borderColor: fade(fullWhite, 0.3),

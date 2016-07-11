@@ -1,0 +1,27 @@
+@import "../../../../partials/color-vars";
+
+.resify__form {
+	&__label-field {
+		.input-block {
+			white-space: nowrap;
+			label.display-label {
+			    float: left;
+			    display: inline-block;
+				font-size: .95em;
+				color: $color-light-gray;
+				font-weight: 300;
+			    padding: 20px 0px;
+			    width: 70px;
+			    text-align: left;
+			}
+			label.display-box {
+			    padding: 20px 10px;
+				.descriptive-text{
+					font-size: .95em;
+					color: $color-light-gray;
+					font-weight: 300;
+				}
+			}
+		}
+	}
+}

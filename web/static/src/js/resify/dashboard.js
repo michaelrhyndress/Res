@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 //MUI
-import darkBlack from 'material-ui/styles/colors';
 import EventPluginHub from 'react/lib/EventPluginHub';
 import TapEventPlugin from 'react/lib/TapEventPlugin';
 EventPluginHub.injection.injectEventPluginsByName({ TapEventPlugin });

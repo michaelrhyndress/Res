@@ -1,0 +1,30 @@
+@import "./bootstrap-sass/stylesheets/bootstrap-custom";
+
+.resify__form {
+	&__timeField {
+    	float: left;
+		width: 100px !important;
+		cursor: pointer;
+		&__wrapper {
+			@include make-row();
+			white-space: nowrap;
+		}
+		
+		&__title {
+			width: 50px;
+			float: left;
+			line-height: 100px;
+			height: 72px;
+			padding-right: 25px;
+			padding-left: 15px;
+			
+		}
+		
+		label, input {
+			cursor: pointer;
+		}
+		hr {
+			width: 90px !important;
+		}
+	}
+}

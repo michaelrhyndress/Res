@@ -20,7 +20,9 @@ export default class Frame extends React.Component {
 						class="resify__frame__btn--fullscreen">
 						{btnText}
 						</button> : null }
-				<div class="resify__frame--resume"></div>
+				<div class="resify__frame--resume">
+						
+				</div>
 			</div>
 		);
 	}

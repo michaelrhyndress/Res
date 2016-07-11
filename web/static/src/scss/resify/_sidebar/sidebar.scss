@@ -4,13 +4,15 @@
 	display: inline-block;
 	float: left;
     width: 40%;
-	height: auto;
-    overflow: auto;
+	height: 100%;
+	overflow-x: hidden;
+    overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     	-ms-overflow-style: none;
     transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), color 0.7s ease-out, opacity 1ms linear;
 	
 	&__footer {
+		margin-top: 2em;
 		.wrapper {
 			width: 100%;
 			text-align: center;
@@ -42,4 +44,17 @@
 
 .resify__sidebar--hidden {
 	display: none;
+}
+
+
+.resify__tab-section {
+	@include center-block();
+	padding: 0 15px;
+	
+	@for $i from 1 through 5 {
+		h#{$i} {
+			padding-top: 25px;
+			margin-bottom: 0;
+		}
+	}
 }
