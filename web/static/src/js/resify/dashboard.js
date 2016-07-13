@@ -2,9 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 //MUI
-import EventPluginHub from 'react/lib/EventPluginHub';
-import TapEventPlugin from 'react/lib/TapEventPlugin';
-EventPluginHub.injection.injectEventPluginsByName({ TapEventPlugin });
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DashboardTheme from '../../themes/DashboardTheme.js';
