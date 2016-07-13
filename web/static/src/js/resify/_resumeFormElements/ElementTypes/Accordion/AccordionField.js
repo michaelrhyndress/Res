@@ -53,6 +53,7 @@ export class AccordionField extends React.Component {
 				<Divider />
 				<div style={accordionStyle.accordion}>
 					<ActionPanel items={leftPanelItems} style={{float:'left'}}/>
+			
 					<label style={accordionStyle.label}>
 						{this.props.label}
 					</label>

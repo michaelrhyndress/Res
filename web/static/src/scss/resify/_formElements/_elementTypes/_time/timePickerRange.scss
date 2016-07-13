@@ -4,7 +4,6 @@
 	&__timeField {
     	float: left;
 		width: 100px !important;
-		cursor: pointer;
 		&__wrapper {
 			@include make-row();
 			white-space: nowrap;
@@ -18,10 +17,6 @@
 			padding-right: 25px;
 			padding-left: 15px;
 			
-		}
-		
-		label, input {
-			cursor: pointer;
 		}
 		hr {
 			width: 90px !important;

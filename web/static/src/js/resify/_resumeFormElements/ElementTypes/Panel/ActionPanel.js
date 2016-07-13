@@ -1,6 +1,6 @@
 import React from 'react';
 import {IconButton} from 'material-ui';
-import theme from "../../../../../themes/FormThemeDark";
+import Theme from "../../../../../themes/FormTheme";
 
 
 const panelIconStyle = {
@@ -21,7 +21,7 @@ class ActionItem extends React.Component {
 		return Object.assign(
 			{},
 			{
-				color: theme.palette.primary1Color
+				color: Theme.palette.primary1Color
 			},
 			this.props.iconStyle
 		);
@@ -35,7 +35,8 @@ class ActionItem extends React.Component {
 					iconStyle={this.getIconStyles()}
 					tooltip={this.props.tooltip}
 					tooltipPosition={this.getTooltipPosition()}
-					touch={true}
+					tooltipStyles={{fontSize: '12px', top: '25px'}}
+					touch={false}
 					iconClassName={this.props.icon}
 				/>
 			</a>

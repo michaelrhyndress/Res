@@ -12,15 +12,19 @@ export default {
 	palette: {
 		primary1Color: "#337AA8",
 		accent1Color: "#337AA8",
-		accent2Color: '#337AA8',
+		accent2Color: "#337AA8",
 		accent3Color: '#337AA8',
+		dangerColor: '#C92228',
+		infoColor: '#337AA8',
+		warningColor: '#F17736',
+		successColor: '#23BF3D',
 		textColor: darkBlack,
 		secondaryTextColor: darkBlack,
 		// alternateTextColor: fullWhite,
 		// canvasColor: '#303030',
-		// borderColor: fade(fullWhite, 0.3),
+		//borderColor: fade(fullWhite, 0.3),
 		// disabledColor: fade(fullWhite, 0.3),
 		pickerHeaderColor: "#337AA8",
-		// clockCircleColor: fade(fullWhite, 0.12),
+		// clockCircleColor: fade(fullWhite, 0.12)
 	},
 };

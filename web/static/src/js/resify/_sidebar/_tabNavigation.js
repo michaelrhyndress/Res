@@ -6,12 +6,15 @@ import TapEventPlugin from 'react/lib/TapEventPlugin';
 EventPluginHub.injection.injectEventPluginsByName({ TapEventPlugin });
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Theme from '../../../themes/FormThemeDark.js';
+import Theme from '../../../themes/FormTheme.js';
 
+//Forms
+import {
+	PersonalDetailsForm,
+	ContactDetailsForm,
+} from "../_resumeFormElements/_forms";
 
 import {
-	PersonalDetails,
-	ContactDetails,
 	WorkExperience,
 	EducationHistory,
 	PublicationHistory,
@@ -46,16 +49,17 @@ export default class TabNavigation extends React.Component {
 							<h1>
 								Personal Details 
 								<IconButton
-									tooltip={["Changes affect all résumés"]}
+									tooltip={["Changes made here will affect all résumés"]}
 									tooltipPosition="bottom-left"
-									touch={true}
+									tooltipStyles={{fontSize: '12px'}}
+									touch={false}
 									iconClassName="fa fa-question-circle"
 								/>
 							</h1>
-							<PersonalDetails />
+							<PersonalDetailsForm />
 							
 							<h2>Contact Information</h2>
-							<ContactDetails />
+							<ContactDetailsForm />
 									
 							<h2>Location</h2>
 							<GeoLocation />

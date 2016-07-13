@@ -3,6 +3,8 @@ import {TextField} from 'material-ui';
 import {AccordionField} from '../ElementTypes';
 import {DatePickerRange} from '../ElementTypes';
 
+import Theme from '../../../../themes/FormTheme';
+
 class ExperienceForm__Position extends React.Component {
 	render() {
 		return (
@@ -70,33 +72,47 @@ export class WorkExperience extends React.Component {
 	deleteItem() {
 		console.log("Deleted");
 	}
+	
 	render() {
+		
+		const actionItems = [
+			{
+				side: "right",
+				icon: "fa fa-trash-o",
+				tooltip: "Delete this item?",
+				iconStyle: {
+					color: Theme.palette.dangerColor
+				},
+				action: this.deleteItem.bind(this)
+			}
+		],
+		openCloseItem = {
+			side: "left",
+			iconStyle: {fontSize: "18px"},
+			icon: {
+				open: "fa fa-plus-square",
+				close: "fa fa-minus-square"
+			}
+		},
+		labels = ["label1", "label2", "label3"];
+		
+		var accordionItems = labels.map( (item, key) => {
+			console.log(item);
+			return (
+				<AccordionField
+					key={key}
+					label = {item}
+					openCloseItem = {openCloseItem}
+					actionItems = {actionItems} >
+			
+					<ExperienceForm fields={{}}/>
+					</AccordionField>
+				);
+			}, this);
+		
 		return (
 			<div>
-				<AccordionField
-					label = "Front End Developer"
-					openCloseItem = {{
-						side: "left",
-						iconStyle: {fontSize: "18px"},
-						icon: {
-							open: "fa fa-plus-square",
-							close: "fa fa-minus-square"
-						}
-					}}
-					actionItems = {[
-						{
-							side: "right",
-							icon: "fa fa-trash-o",
-							tooltip: "Delete this item?",
-							iconStyle: {
-								color: '#C92228'
-							},
-							action: this.deleteItem.bind(this)
-						}
-					]}
-				>
-					<ExperienceForm />
-				</AccordionField>
+				{accordionItems}
 			</div>
 		);
 	}
