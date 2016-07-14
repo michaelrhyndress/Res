@@ -7,7 +7,10 @@ export default class Frame extends React.Component {
 	render() {
 		const 	btnProps	= this.props.options.btn,
 				classOptions= ["resify__frame--fullwidth", "resify__frame"],
-				btnOptions	= ["Edit Mode", "Fullscreen"],
+				btnOptions	= [
+					gettext("Edit Mode"),
+					gettext("Fullscreen")
+				],
 				classname	= classOptions[btnProps.fullwidth.startFull ? 0 : 1],
 				btnText		= btnOptions[btnProps.fullwidth.startFull ? 0 : 1];
 			

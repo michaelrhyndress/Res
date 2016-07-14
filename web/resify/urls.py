@@ -16,9 +16,15 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from resify.views import Dashboard
+from django.views.i18n import javascript_catalog
+
+DASHBOARD_LANG = {
+    'packages': ('resify.dashboard.language.package',),
+}
 
 urlpatterns = [
+    url(r'^xyz/jsi18n/dashboard/$', javascript_catalog, DASHBOARD_LANG, name='dashboard-catalog'),
     url(r'^admin/', admin.site.urls),
     url(r'^convert/', include('lazysignup.urls')),
-    url(r'^', Dashboard.as_view(), name="dashboard"),
+    url(r'^$', Dashboard.as_view(), name="dashboard"),
 ]
