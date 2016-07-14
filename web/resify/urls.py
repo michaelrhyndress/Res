@@ -13,17 +13,31 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from datetime import datetime
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.utils import timezone
+from django.views.decorators.cache import cache_page
+from django.views.decorators.http import last_modified
+from django.views.i18n import JavaScriptCatalog
 from resify.views import Dashboard
-from django.views.i18n import javascript_catalog
 
-DASHBOARD_LANG = {
-    'packages': ('resify.dashboard.language.package',),
-}
+
+def get_version():
+    return datetime.today().isoformat();
+
+last_modified_date = timezone.now()
+key_prefix = 'js18n-%s' % get_version()
+
 
 urlpatterns = [
-    url(r'^xyz/jsi18n/dashboard/$', javascript_catalog, DASHBOARD_LANG, name='dashboard-catalog'),
+    url(r'^xyz/jsi18n/dashboard/$',
+        # last_modified(lambda req, **kw: last_modified_date)(JavaScriptCatalog.as_view()),
+        cache_page(86400, key_prefix=key_prefix)(JavaScriptCatalog.as_view(
+            packages=['resify', 'lazysignup'])
+        ),
+        name='dashboard-catalog'
+    ),    
     url(r'^admin/', admin.site.urls),
     url(r'^convert/', include('lazysignup.urls')),
     url(r'^$', Dashboard.as_view(), name="dashboard"),
