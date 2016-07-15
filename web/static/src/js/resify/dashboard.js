@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import { Provider } from "react-redux";
 //MUI
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -10,6 +10,9 @@ import DashboardTheme from '../../themes/DashboardTheme.js';
 // Components
 import Frame from './_frame';
 import Sidebar from './_sidebar';
+
+//REDUX
+import store from "./store";
 
 // Css
 import "../../scss/resify/_dashboard/dashboard.scss";
@@ -57,4 +60,6 @@ export default class Dashboard extends React.Component {
 
 const app = document.getElementById('dashboard');
 
-ReactDOM.render(<Dashboard />, app);
+ReactDOM.render(<Provider store={store}>
+	<Dashboard />
+</Provider>, app);

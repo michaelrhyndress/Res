@@ -1,18 +1,19 @@
 import React from "react";
 import {TextField} from 'material-ui';
 
-export class LastnameField extends React.Component {
+export class FirstnameField extends React.Component {
 	render() {
 		return (
 			<TextField
-				id="lastname"
+				id="firstname"
 				className="text-field-long"
 			    ref="textfield"
 				style={{
 					width: '50%',
-					margin: '0 15px'
+					margin: '0 -15px'
 				}}
-			    floatingLabelText="Last name"/>
+			    floatingLabelText={gettext("First Name")}
+				defaultValue={this.props.firstname}/>
 		);
 	}
 }

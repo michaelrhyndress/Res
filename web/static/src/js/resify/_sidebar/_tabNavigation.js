@@ -12,7 +12,7 @@ import Theme from '../../../themes/FormTheme.js';
 import {
 	PersonalDetailsForm,
 	ContactDetailsForm,
-} from "../_resumeFormElements/_forms";
+} from "../_resumeFormElements/forms";
 
 import {
 	WorkExperience,

@@ -1,1 +1,0 @@
-export {PersonalDetailsForm} from "./_personalDetailsForm";

@@ -5,7 +5,7 @@ import {
 	PersonalStatementField,
 	ProfessionField,
 	UsernameField
-} from '../../_fields/';
+} from './components';
 
 export class PersonalDetailsForm extends React.Component {
 	render() {

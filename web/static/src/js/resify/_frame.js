@@ -24,7 +24,7 @@ export default class Frame extends React.Component {
 						{btnText}
 						</button> : null }
 				<div class="resify__frame--resume">
-						
+						{JSON.stringify(window._sharedData)}
 				</div>
 			</div>
 		);

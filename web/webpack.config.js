@@ -76,7 +76,7 @@ module.exports = {
 				query:
 				{
 					presets:['react', 'es2015', 'stage-1'],
-					plugins: ['react-html-attrs']
+					plugins: ['react-html-attrs', 'transform-decorators-legacy']
 				}
 			}, // to transform JSX into JS
 			{

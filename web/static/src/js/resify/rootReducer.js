@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-// import nameField from './_resumeFormElements/_fields/_name';
+import PersonalDetails from './_resumeFormElements/forms/personalDetails';
 
 export default combineReducers({
-  // [nameField.constants.NAME]: nameField.reducer
+  [PersonalDetails.constants.NAME]: PersonalDetails.reducer,
 });
