@@ -1,5 +1,4 @@
 import React from "react";
-
 import {DatePicker} from 'material-ui';
 
 import '../../../../../scss/resify/_formElements/_elementTypes/_time/datePickerRange.scss';

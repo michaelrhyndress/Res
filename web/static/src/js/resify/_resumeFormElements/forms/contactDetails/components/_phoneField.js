@@ -1,6 +1,13 @@
 import React from 'react';
 import {TextField} from 'material-ui';
+import { connect } from 'react-redux';
+import { setAvailabilityPhone } from '../actions';
 
+@connect((store) => {
+	return {
+		phone: store.ContactDetailsForm.phone
+	}
+})
 export class PhoneField extends React.Component {
 	
 	formatNumber = (val) => {
@@ -9,20 +16,24 @@ export class PhoneField extends React.Component {
 	}
 	
 	handleFormating = (event) => {
-		event.target.value = this.formatNumber(event.target.value);
-	}
+		let val = this.formatNumber(event.target.value);
+		this.props.dispatch(setAvailabilityPhone(
+			...this.props,
+			val
+		));
+	};
 	
 	render() {
 		return (
 			<TextField
-				ref="phone"
-				id="phone1"
 				className="text-field-long"
-		        ref="textfield"
-		        floatingLabelText="Primary Phone Number."
+				floatingLabelText={gettext("Primary Phone Number.")}
 				fullWidth={true}
+				id="basics.availability.set.phone"
+				onChange={this.handleFormating}
+				ref="basics.availability.set.phone"
 				type='tel'
-				onInput={this.handleFormating} />
+				value={this.props.phone} />
 		);
 	}
 }

@@ -2,10 +2,10 @@ import * as t from './actionTypes';
 import State from './model';
 
 const initialState: State = {
-	fullname: "",
-    username: "",
-    label: "",
-    summary: "",
+	fullname: window._sharedData.basics.name,
+    username: window._sharedData.basics.username,
+    label: window._sharedData.basics.label,
+    summary: window._sharedData.basics.summary,
 };
 
 export default function reducer(state=initialState, action): State {

@@ -1,4 +1,4 @@
-@import "./bootstrap-sass/stylesheets/bootstrap-custom";
+//@import "./bootstrap-sass/stylesheets/bootstrap-custom";
 
 .resify__form {
 	&__dateField {
@@ -6,7 +6,7 @@
 		width: 100px !important;
 		cursor: pointer;
 		&__wrapper {
-			@include make-row();
+//			@include make-row();
 			white-space: nowrap;
 		}
 		

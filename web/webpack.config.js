@@ -51,11 +51,11 @@ module.exports = {
 		// 	jQuery: "jquery",
 		// 	"window.jQuery": "jquery"
 		// }),
-		new webpack.ProvidePlugin({
-		    $: "jquery",
-		    jQuery: "jquery",
-		    "window.jQuery": "jquery",
-		}),
+		// new webpack.ProvidePlugin({
+		//     $: "jquery",
+		//     jQuery: "jquery",
+		//     "window.jQuery": "jquery",
+		// }),
 		// new webpack.optimize.CommonsChunkPlugin(
 		// 	'vendor', 'vendor.bundle.js', Infinity
 		// ),
@@ -117,11 +117,6 @@ module.exports = {
 				loader: "imports?this=>window!exports?window.Modernizr" 
 			}
 		],
-		// postcss: [
-		//     atImport(),
-		//     autoprefixer(),
-		//     bemLinter('bem')
-		//   ],
 	},
 	
 	sassLoader: {
@@ -131,13 +126,9 @@ module.exports = {
 	resolve: {
 		modulesDirectories: [
 			'node_modules',
-			__scssDir,
-			__scriptDir
+			__scriptDir,
+			__scssDir
 		],
-		// alias: {
-// 			jquery: path.join(__staticDir, "js/vendor/jquery-2.1.4.js"),
-// 			vide: path.join(__staticDir, "js/vendor/vide.js"),
-// 		},
 		extensions: ['', '.js', '.jsx'],
 	},
 }

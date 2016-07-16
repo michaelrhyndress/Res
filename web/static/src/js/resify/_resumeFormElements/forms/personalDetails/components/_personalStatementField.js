@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextField} from 'material-ui';
+import { TextField } from 'material-ui';
 import { connect } from 'react-redux';
 import { setSummary } from '../actions';
 
@@ -9,10 +9,6 @@ import { setSummary } from '../actions';
 	}
 })
 export class PersonalStatementField extends React.Component {
-	
-	componentWillMount = () => {
-		this.props.dispatch(setSummary(window._sharedData.basics.summary));
-	}
 	
 	handleChange = (e, value) => {
 		this.props.dispatch(setSummary(value));

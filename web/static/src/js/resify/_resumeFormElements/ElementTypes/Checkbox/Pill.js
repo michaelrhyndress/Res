@@ -27,13 +27,9 @@ export class PillGroup extends React.Component {
 				<label
 					key={index}
 					onClick={this.handleClick.bind(this, label)}
-					class={active}>
-					
+					class={active} >
 					{label}
-					<Ink 
-						background = {false}
-					/>
-					
+					<Ink background={false} />
 				</label>
 			);
 		}, this);

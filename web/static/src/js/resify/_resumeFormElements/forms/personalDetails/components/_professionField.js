@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextField} from 'material-ui';
+import { TextField } from 'material-ui';
 import { connect } from 'react-redux';
 import { setLabel } from '../actions';
 
@@ -9,10 +9,6 @@ import { setLabel } from '../actions';
 	}
 })
 export class ProfessionField extends React.Component {
-	
-	componentWillMount = () => {
-		this.props.dispatch(setLabel(window._sharedData.basics.label))
-	}
 	
 	handleChange = (e, value) => {
 		this.props.dispatch(setLabel(value));

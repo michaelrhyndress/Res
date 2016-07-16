@@ -6,12 +6,12 @@ import Theme from "../../../../../themes/FormTheme";
 import {
 	PhoneField,
 	AvailabilityField,
-} from '../../_fields/';
+} from './components';
 
 export class ContactDetailsForm extends React.Component {
 	render() {
 		return (
-			<div>
+			<div style={{display: 'inline-block'}}>
 				<PhoneField />
 				<AvailabilityField />
 			</div>

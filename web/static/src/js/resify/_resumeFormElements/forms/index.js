@@ -1,2 +1,2 @@
 export {PersonalDetailsForm} from "./personalDetails/personalDetailsForm";
-export {ContactDetailsForm} from "./_contactDetails/_contactDetailsForm";
+export {ContactDetailsForm} from "./contactDetails/contactDetailsForm";

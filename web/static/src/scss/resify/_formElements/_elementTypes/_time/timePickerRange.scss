@@ -1,12 +1,14 @@
-@import "./bootstrap-sass/stylesheets/bootstrap-custom";
+//@import "./bootstrap-sass/stylesheets/bootstrap-custom";
 
 .resify__form {
 	&__timeField {
     	float: left;
 		width: 100px !important;
 		&__wrapper {
-			@include make-row();
+//			@include make-row();
 			white-space: nowrap;
+			float: left;
+			width: 100%;
 		}
 		
 		&__title {

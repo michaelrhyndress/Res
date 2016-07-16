@@ -1,5 +1,5 @@
 import React from "react";
-import {TextField} from 'material-ui';
+import { TextField } from 'material-ui';
 import { connect } from 'react-redux';
 import { setFullname } from '../actions';
 
@@ -9,10 +9,6 @@ import { setFullname } from '../actions';
 	}
 })
 export class FullnameField extends React.Component {
-	
-	componentWillMount = () => {
-		this.props.dispatch(setFullname(window._sharedData.basics.name));
-	}
 	
 	handleChange = (e, value) => {
 		this.props.dispatch(setFullname(value));

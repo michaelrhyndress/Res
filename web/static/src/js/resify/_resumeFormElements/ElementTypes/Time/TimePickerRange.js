@@ -1,38 +1,70 @@
-import React from "react";
-
+import React, {Component, PropTypes} from "react";
+import objectAssign from 'object-assign';
 import {TimePicker} from 'material-ui';
 
 import '../../../../../scss/resify/_formElements/_elementTypes/_time/timePickerRange.scss';
 
-
-const timePickerStyle={
+export class TimePickerRange extends Component {
 	
-}
-
-export class TimePickerRange extends React.Component {
+	static propTypes = {
+		times: React.PropTypes.oneOfType([
+			React.PropTypes.string,
+			React.PropTypes.object
+		]),
+		onChange: PropTypes.func,
+	};
+	 
+	sendCallback = (setter, string) => {
+		this.props.onChange(
+			objectAssign(
+				this.props.times,
+				{
+					[setter]: string
+				}
+			)
+		);
+	}
+	
+	handleChangeStart = (event, datetime) => {
+		let string = (datetime == null) ? null : datetime.toJSON();
+		this.sendCallback("start", string);
+	};
+	
+	handleChangeEnd = (event, datetime) => {
+		let string = (datetime == null) ? null : datetime.toJSON();
+		this.sendCallback("end", string);
+	};
+	
+	getDate = (string) => {
+		if (string != null) {
+			return new Date(string);
+		}
+		return string;
+	}
+	
 	render() {
 		
-		const to = {value: this.props.fromDefault},
-			from = {value: this.props.toDefault}
 		return (
 			<div class="resify__form__timeField__wrapper">
-				<label class="resify__form__timeField__title">Available: </label>
+				<label class="resify__form__timeField__title">
+					{gettext("Available")+":"}
+				</label>
+			
 				<TimePicker
-					id="availability.from"
-					format="ampm"
 					className="resify__form__timeField"
-					floatingLabelText="From"
-					value={to}
-					textFieldStyle={timePickerStyle}
-				/>
+					floatingLabelText= { gettext("From") }
+					format="ampm"
+					id="basics.availability.set.start"
+					onChange = { this.handleChangeStart }
+					value={ this.getDate(this.props.times.start) }/>
+	
 				<TimePicker
-					id="availability.to"
-					format="ampm"
 					className="resify__form__timeField"
-					floatingLabelText="To"
-					value={from}
-					textFieldStyle={timePickerStyle}
-	        	/>
+					floatingLabelText={ gettext("To") }
+					format="ampm"
+					id="basics.availability.set.end"
+					onChange = { this.handleChangeEnd }
+					value={ this.getDate(this.props.times.end) } />
 			</div>
 		);
 	}

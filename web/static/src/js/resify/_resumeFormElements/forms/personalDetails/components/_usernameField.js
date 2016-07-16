@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextField} from "material-ui";
+import { TextField } from "material-ui";
 import { connect } from 'react-redux';
 import { setUsername } from '../actions';
 
@@ -12,10 +12,6 @@ import Theme from "../../../../../../themes/FormTheme";
 	}
 })
 export class UsernameField extends React.Component {
-	
-	componentWillMount = () => {
-		this.props.dispatch(setUsername(window._sharedData.basics.username))
-	}
 	
 	get = (option) => {
 		const WORD_MAP = {

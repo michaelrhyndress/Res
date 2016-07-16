@@ -1,4 +1,3 @@
-@import "./bootstrap-sass/stylesheets/bootstrap-custom";
 @import "../../../../partials/color-vars";
 
 $pill-color: #337AA8;
@@ -8,7 +7,9 @@ $pill-color: #337AA8;
     display: inline-block;
     vertical-align: middle;
 	border-style: hidden;
-		
+	float: left;
+	width: 100%;
+			
 	label {
 		position: relative;
 	    display: inline-block;
