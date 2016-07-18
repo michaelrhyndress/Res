@@ -1,4 +1,3 @@
-export {WorkExperience} from "./WorkExperience";
 export {EducationHistory} from "./EducationHistory";
 export {AwardHistory} from "./AwardHistory";
 export {PublicationHistory} from "./PublicationHistory";

@@ -31,16 +31,18 @@ export class DatePickerRange extends React.Component {
 			from = {value: this.props.toDefault}
 		return (
 			<div class="resify__form__timeField__wrapper">
-				<label class="resify__form__timeField__title">Available: </label>
+				<label class="resify__form__timeField__title">
+					{gettext("Period") +":"}
+				</label>
 				<DatePicker
 					autoOk={this.state.autoOk}
-					floatingLabelText="Started"
+					floatingLabelText={gettext("Start")}
 					defaultDate={this.state.minDate}
 					disableYearSelection={this.state.disableYearSelection}
 				/>
 				<DatePicker
 					autoOk={this.state.autoOk}
-					floatingLabelText="Ended"
+					floatingLabelText={gettext("End")}
 					defaultDate={this.state.maxDate}
 					disableYearSelection={this.state.disableYearSelection}
 				/>

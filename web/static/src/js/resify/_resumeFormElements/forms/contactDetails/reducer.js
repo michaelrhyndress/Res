@@ -1,6 +1,7 @@
 import * as t from './actionTypes';
 import State from './model';
 
+
 const initialState: State = {
 	phone: window._sharedData.basics.availability.phone,
 	days: window._sharedData.basics.availability.days,

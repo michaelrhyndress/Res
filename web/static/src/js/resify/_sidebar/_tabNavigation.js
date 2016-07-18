@@ -12,10 +12,10 @@ import Theme from '../../../themes/FormTheme.js';
 import {
 	PersonalDetailsForm,
 	ContactDetailsForm,
+	WorkExperienceForm,
 } from "../_resumeFormElements/forms";
 
 import {
-	WorkExperience,
 	EducationHistory,
 	PublicationHistory,
 	AwardHistory,
@@ -72,7 +72,7 @@ export default class TabNavigation extends React.Component {
 					<MuiThemeProvider muiTheme={getMuiTheme(Theme)}>
 						<div class="resify__tab-section">
 							<h1>Experience</h1>
-				 			<WorkExperience />
+				 			<WorkExperienceForm />
 						</div>
 					</MuiThemeProvider>
 				</Tab>

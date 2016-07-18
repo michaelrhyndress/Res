@@ -1,7 +1,4 @@
 import React from "react";
-import {TextField} from 'material-ui';
-import {TimePickerRange, PillGroup} from '../../ElementTypes';
-import Theme from "../../../../../themes/FormTheme";
 
 import {
 	PhoneField,

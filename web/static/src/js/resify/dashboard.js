@@ -49,7 +49,10 @@ export default class Dashboard extends React.Component {
 		return (
 			<MuiThemeProvider muiTheme={getMuiTheme(DashboardTheme)}>
 				<div class="dashboard__wrapper">
-					{this.state.sidebar.render ? <Sidebar open={this.state.sidebar.startOpen} /> : null }
+					{this.state.sidebar.render
+						? <Sidebar open={this.state.sidebar.startOpen} />
+						: null
+					}
 					<Frame options={options}/>
 				</div>
 			</MuiThemeProvider>

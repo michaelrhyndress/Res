@@ -1,7 +1,7 @@
 type TimeObj = {
 	start: String;
 	end: String;
-}
+};
 
 type DaysObj = {
 	Sun: Boolean;
@@ -10,13 +10,13 @@ type DaysObj = {
 	Wed: Boolean;
 	Thurs: Boolean;
 	Fri: Boolean;
-	Sun: Boolean;
-}
+	Sat: Boolean;
+};
 
 type ContactDetailsForm = {
 	phone: String;
 	days: DaysObj;
-	time: TimeObj;
+	time: TimeObj
 };
 
 export type State = ContactDetailsForm;
