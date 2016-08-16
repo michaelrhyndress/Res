@@ -1,15 +1,15 @@
 import React from 'react';
 import { TextField } from 'material-ui';
 import { connect } from 'react-redux';
-import { setSummary } from '../actions';
+import { setSummary } from '../../../../profile/actions';
 
 @connect((store) => {
 	return {
-		summary: store.PersonalDetailsForm.summary
+		summary: store.profile.summary
 	}
 })
 export class PersonalStatementField extends React.Component {
-	
+
 	handleChange = (e, value) => {
 		this.props.dispatch(setSummary(value));
 	}
@@ -33,7 +33,7 @@ export class PersonalStatementField extends React.Component {
 				multiLine={true}
 				onChange={this.handleChange}
 		        ref="basics.set.summary"
-				value={this.props.summary} />
+				value={this.props.summary}/>
 		);
 	}
 }

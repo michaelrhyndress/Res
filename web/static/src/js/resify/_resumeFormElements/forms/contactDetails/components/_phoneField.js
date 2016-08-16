@@ -5,7 +5,7 @@ import { setAvailabilityPhone } from '../actions';
 
 @connect((store) => {
 	return {
-		phone: store.ContactDetailsForm.phone
+		phone: store.profile.availability.phone
 	}
 })
 export class PhoneField extends React.Component {

@@ -3,9 +3,9 @@ import State from './model';
 
 
 const initialState: State = {
-	phone: window._sharedData.basics.availability.phone,
-	days: window._sharedData.basics.availability.days,
-	time: window._sharedData.basics.availability.time
+	phone: "",
+	days: "",
+	time:""
 };
 
 export default function reducer(state=initialState, action): State {

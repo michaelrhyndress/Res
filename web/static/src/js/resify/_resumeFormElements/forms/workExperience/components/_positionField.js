@@ -5,7 +5,7 @@ import { setPosition } from '../actions';
 
 @connect((store, ownProps) => {
 	const _this = store.Work[ownProps.parent];
-	console.log(_this.position);
+	// console.log(_this.position);
 	return {
 		position: _this.position
 	}
@@ -29,7 +29,7 @@ export class PositionField extends Component {
 				id="experience.set.position"
 				className="text-field-long"
 			    ref="textfield"
-			    floatingLabelText= {gettext("Position")}
+			    floatingLabelText={gettext("Position")}
 				fullWidth={true}
 				onChange={this.handleChange}
 				value={this.props.position}/>

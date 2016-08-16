@@ -1,8 +1,16 @@
 import * as t from './actionTypes';
 
-export const setFullname = ( fullname ) => ({
-  type: t.SET_FULLNAME,
-  payload: fullname
+// SET updates DOM
+// POST, PUT, PATCH updates persistent memory
+
+export const setFirstname = ( firstname ) => ({
+  type: t.SET_FIRSTNAME,
+  payload: firstname
+});
+
+export const setLastname = ( lastname ) => ({
+  type: t.SET_LASTNAME,
+  payload: lastname
 });
 
 export const setUsername = ( username ) => ({

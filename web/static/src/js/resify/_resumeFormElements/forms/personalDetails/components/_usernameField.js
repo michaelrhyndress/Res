@@ -1,18 +1,18 @@
 import React from 'react';
 import { TextField } from "material-ui";
 import { connect } from 'react-redux';
-import { setUsername } from '../actions';
+import { setUsername } from '../../../../profile/actions';
 
 import Theme from "../../../../../../themes/FormTheme";
 
 // TODO: Validation, Cleaning up & async saving
 @connect((store) => {
 	return {
-		username: store.PersonalDetailsForm.username,
+		username: store.profile.user.username
 	}
 })
 export class UsernameField extends React.Component {
-	
+
 	get = (option) => {
 		const WORD_MAP = {
 			SUCCESS: gettext("Change saved."),
@@ -30,7 +30,9 @@ export class UsernameField extends React.Component {
 	// TODO: Better method management and saving of validity
 	constructor() {
 		super();
-		this.defaultUsername = window._sharedData.basics.username;
+		// this.defaults = {
+		// 	username: window._sharedData.user.username
+		// };
 		this.defaultError = {text: "", color: ""};
 		this.state = {
 			error: this.defaultError,
@@ -135,11 +137,11 @@ export class UsernameField extends React.Component {
 	}
 	
 	render() {
-		
+
 		return (
 			<TextField
 				className="text-field-long"
-				defaultValue={this.defaultUsername}
+				defaultValue={this.props.username}
 				errorStyle={{color: this.state.error.color}}
 				errorText={this.state.error.text}
 				floatingLabelText={this.state.label}

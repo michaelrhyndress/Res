@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
+import { connect, Provider } from "react-redux";
+import { getProfile } from './profile/actions';
 //MUI
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -17,12 +18,16 @@ import store from "./store";
 // Css
 import "../../scss/resify/_dashboard/dashboard.scss";
 
+@connect((store) => {
+	return {
+
+	}
+})
 export default class Dashboard extends React.Component {
-	
+
 	constructor() {
 		super();
 		this.state = {
-			data: window._sharedData,
 			sidebar: {
 				render: true,
 				startOpen: true

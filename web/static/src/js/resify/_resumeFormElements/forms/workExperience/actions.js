@@ -2,17 +2,17 @@ import * as t from './actionTypes';
 
 export const addWork = ( id ) => ({
   type: t.ADD_WORK,
-  payload: id
+  id: id
 });
 
 export const deleteWork = ( id ) => ({
   type: t.DELETE_WORK,
-  payload: id
+  id: id
 });
 
 export const setPosition = ( id, payload ) => ({
   type: t.SET_POSITION,
-  index: id,
+  id: id,
   payload: payload
 });
 //

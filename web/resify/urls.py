@@ -18,17 +18,15 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
-from django.views.decorators.http import last_modified
 from django.views.i18n import JavaScriptCatalog
-from resify.views import Dashboard
+from .views import Dashboard
 
 
 def get_version():
-    return datetime.today().isoformat();
+    return datetime.today().isoformat()
 
 last_modified_date = timezone.now()
 key_prefix = 'js18n-%s' % get_version()
-
 
 urlpatterns = [
     url(r'^xyz/jsi18n/dashboard/$',
@@ -37,7 +35,8 @@ urlpatterns = [
             packages=['resify', 'lazysignup'])
         ),
         name='dashboard-catalog'
-    ),    
+    ),
+    url(r'^@api/', include('resifyapi.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^convert/', include('lazysignup.urls')),
     url(r'^$', Dashboard.as_view(), name="dashboard"),

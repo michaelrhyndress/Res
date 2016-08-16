@@ -1,29 +1,50 @@
 import React from "react";
 import { TextField } from 'material-ui';
 import { connect } from 'react-redux';
-import { setFullname } from '../actions';
+import { setFirstname, setLastname } from '../../../../profile/actions';
 
 @connect((store) => {
 	return {
-		fullname: store.PersonalDetailsForm.fullname,
+		first_name: store.profile.user.first_name,
+		last_name: store.profile.user.last_name
 	}
 })
 export class FullnameField extends React.Component {
-	
-	handleChange = (e, value) => {
-		this.props.dispatch(setFullname(value));
-	}
+
+	handleChangeFirstname = (e, value) => {
+		this.props.dispatch(setFirstname(value));
+	};
+	handleChangeLastname = (e, value) => {
+		this.props.dispatch(setLastname(value));
+	};
 	
 	render() {
 		return (
-			<TextField
-				className="text-field-long"
-				floatingLabelText={gettext("Full Name")}
-				fullWidth={true} 
-				id="basics.set.fullname"
-				onChange={this.handleChange}
-		        ref="basics.set.fullname"
-				value={this.props.fullname} />
+			<div style={{width: '100%', margin: '0 15px'}}>
+				<TextField
+					className="text-field-long"
+					floatingLabelText={gettext("First Name")}
+					id="basics.set.firstname"
+					onChange={this.handleChangeFirstname}
+					ref="basics.set.fullname"
+					style={{
+						width: '50%',
+						margin: '0 -15px'
+					}}
+					value={this.props.first_name} />
+
+				<TextField
+					className="text-field-long"
+					floatingLabelText={gettext("Last Name")}
+					id="basics.set.lastname"
+					onChange={this.handleChangeLastname}
+					ref="basics.set.fullname"
+					style={{
+						width: '50%',
+						margin: '0 15px'
+					}}
+					value={this.props.last_name} />
+			</div>
 		);
 	}
 }

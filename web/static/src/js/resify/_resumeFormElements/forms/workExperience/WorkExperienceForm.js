@@ -29,22 +29,34 @@ class ExperienceForm extends React.Component {
 
 @connect((store) => {
 	return {
-		work: store.Work
+		active: store.profile.active_resume,
+		resumes: store.profile.resumes
 	}
 })
 export class WorkExperienceForm extends React.Component {
-	
+
+	componentWillMount = () => {
+		this.active_resume = this.props.resumes[this.props.active] || null;
+		console.log(this.props.resumes);
+		console.log(this.props.active);
+	};
+
 	deleteItem = (key) => {
 		console.log("deleting: " + key);
 		this.props.dispatch(deleteWork(key));
 	};
 
 	addItem() {
+		const nextID = Math.max.apply(Math, this.props.work.map(function(obj){
+			return obj.order;
+		}));
 		this.props.dispatch(addWork());
 	}
 	
 	render() {
-		const accordionItems = this.props.work.map( (item, key) => {
+		if (this.active_resume == null) { return null; }
+
+		const accordionItems = this.this.active_resume.map( (item) => {
 			let  actionItems = [
 				{
 					side: "right",
@@ -53,7 +65,7 @@ export class WorkExperienceForm extends React.Component {
 					iconStyle: {
 						color: Theme.palette.dangerColor
 					},
-					action: this.deleteItem.bind(this, key)
+					action: this.deleteItem.bind(this, item.id)
 				}
 			],
 			openCloseItem = {
@@ -66,12 +78,12 @@ export class WorkExperienceForm extends React.Component {
 			};
 			return (
 				<AccordionField
-					key={key}
-					label = {this.props.position}
+					key={item.id}
+					label = {item.position}
 					openCloseItem = {openCloseItem}
 					actionItems = {actionItems} >
 
-					<ExperienceForm parent={key} />
+					<ExperienceForm parent={item.id} />
 
 				</AccordionField>
 			);

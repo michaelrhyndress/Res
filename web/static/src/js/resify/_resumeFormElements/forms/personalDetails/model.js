@@ -1,8 +1,9 @@
 type PersonalDetailsForm = {
-  fullname: String;
-  username: String;
-  label: String;
-  summary: String;
+  firstname: String,
+  lastname: String,
+  username: String,
+  label: String,
+  summary: String
 };
 
 export type State = PersonalDetailsForm;
