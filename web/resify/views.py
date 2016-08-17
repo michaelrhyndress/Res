@@ -7,10 +7,9 @@ from django.views.generic import View
 from django.utils.decorators import method_decorator
 from lazysignup.decorators import allow_lazy_user
 
-from resifyapi import services
+from resifyapi import services as api_services
 
-
-app_name = "resify";
+app_name = "resify"
 
 class Dashboard(View):
     """
@@ -21,8 +20,9 @@ class Dashboard(View):
     def get(self, request, *args, **kwargs):
         user_pk = request.user.userdetails.pk
         template = path.join(app_name, 'dashboard.html')
-        data = services.get_userdetails(user_pk).json()
+        data = api_services.get_userdetails(user_pk).json()
         c = {
-            "data": json.dumps(data)
+            "data": json.dumps(data),
+            "token": api_services.getToken(request.user, True),
         }
         return render(request, template, c)

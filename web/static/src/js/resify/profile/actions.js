@@ -1,25 +1,26 @@
 import * as t from './actionTypes';
 import axios from 'axios';
 
-// axios.defaults.headers.common['xsrfCookieName'] = 'csrftoken';
-// axios.defaults.headers.common['xsrfHeaderName'] = 'X-CSRFToken';
-// axios.defaults.headers.common['Content-Type'] = 'application/json';
+const version = 1,
+      base = `http://127.0.0.1:8000/@api/v${version}`,
+      axi = axios.create({baseURL: base});
+
+axi.defaults.headers.common['Authorization'] = `JWT ${window._services.api.token}`;
+// axi.defaults.headers.common['Content-Type'] = 'application/json';
 
 const getAPI = (call, pk = undefined) => {
-  let version = 1,
-      base = `http://localhost:8000/@api/v${version}`;
-
-  if (typeof pk != undefined) {
+  if (typeof pk == "number") {
     call = `${call}/${pk}`;
   }
-  return `${base}/${call}/`;
+  return `/${call}/`;
 };
 
 const sendPatch = (api, json) => {
-    axios({
-      method: 'patch',
+    axi({
+      method: 'PATCH',
       url: api,
-      data: json
+      data: json,
+      headers: { 'Authorization': `JWT ${window._services.api.token}`, 'Content-Type':'application/json' }
     }).then(() => {
       console.log("saved");
     }).catch(function (error) {
@@ -35,18 +36,14 @@ export const getProfile = () => ({
 
 //UserDetails
 export const setFirstname = ( firstname ) => {
-  let api = "/@api/v1/users/" + window._sharedData.profile.user.pk + "/";
-  axios({
-    method: 'patch',
-    url: api,
-    data: {first_name: firstname}
-  }).then((response) => {
-    console.log("saved");
-  });
-  return ({
-    type: t.SET_FIRSTNAME,
-    payload: firstname
-  });
+  console.log(firstname);
+  sendPatch(
+      getAPI(
+          "users",
+          window._sharedData.profile.user.pk
+      ),
+      {first_name: firstname}
+  );
 };
 
 export const setLastname = ( lastname ) => ({

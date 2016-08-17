@@ -43,9 +43,9 @@ export class AvailabilityField extends React.Component {
 				<PhoneField />
 
 				<TimePickerRange
-					times={this.props.time} 
+					times={this.props.time}
 					onChange={this.handleChangeTimePicker} />
-			
+
 				<PillGroup
 					options={this.props.days}
 					onChange={this.handleChangePillGroup}

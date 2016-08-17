@@ -1,9 +1,13 @@
-from .models import Resume, UserDetails
-from rest_framework import serializers, viewsets
-from resify.serializers import UserSerializer
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
-from .permissions import IsOwnerOrReadOnly
+from django.contrib.auth.models import User
+from userdetails.models import Resume, UserDetails
+from rest_framework import serializers
+
+# Serializers define the API representation.
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('pk', 'username', 'email', 'first_name', 'last_name')
+        
 
 
 # Serializers define the API representation.
@@ -26,16 +30,6 @@ class ResumeSerializer(serializers.ModelSerializer):
         )
 
 
-class ResumeViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsOwnerOrReadOnly]
-
-    queryset = Resume.objects\
-        .all()\
-        .filter(deleted_date=None)\
-        .filter(userdetails__is_public=True)
-    serializer_class = ResumeSerializer
-
-
 class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserDetails
@@ -55,16 +49,6 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         )
 
 
-class UserDetailsViewSet(viewsets.ModelViewSet):
-    # permission_classes = (IsAuthenticated,)
-    queryset = UserDetails.objects\
-        .all()\
-        .filter(user__is_active=True)
-    serializer_class = UserDetailsSerializer
-
-
-
-
 class ProfileSerializer(serializers.ModelSerializer):
     # resumes = serializers.PrimaryKeyRelatedField(many=True, queryset=Resume.objects.all())
     resumes = ResumeSerializer(many=True)
@@ -76,7 +60,6 @@ class ProfileSerializer(serializers.ModelSerializer):
             'pk',
             'user',
             "label",
-
             'website',
             'active_resume',
             'start_page',
@@ -87,12 +70,5 @@ class ProfileSerializer(serializers.ModelSerializer):
             'resumes',
         )
 
-
-# ViewSets define the view behavior.
-class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = UserDetails.objects \
-        .all() \
-        .filter(user__is_active=True)
-    serializer_class = ProfileSerializer
 
 

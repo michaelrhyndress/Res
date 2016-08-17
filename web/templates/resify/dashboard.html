@@ -8,7 +8,8 @@
 
 <script type="text/javascript" src="{% url 'dashboard-catalog' %}"></script>
 <script type="text/javascript">
-	window._sharedData = {"profile": {{ data|safe }}}
+	window._sharedData = {"profile": {{ data|safe }}};
+	window._services = {"api": {"token": "{{ token }}"}}
 </script>
 
 {% endblock %}
