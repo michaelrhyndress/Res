@@ -1,8 +1,11 @@
 import { applyMiddleware, createStore } from 'redux';
+import promise from 'redux-promise-middleware';
 import logger from 'redux-logger';
-
 import reducer from './rootReducer';
 
-const middleware = applyMiddleware(logger());
 
-export default createStore(reducer, middleware);
+const middleware = applyMiddleware(promise(), logger());
+
+const store = createStore(reducer, window._sharedData, middleware);
+
+export default store;

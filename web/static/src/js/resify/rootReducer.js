@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import nameField from './_resumeFormElements/_fields/_name';
+import profile from './profile'
+
+// export default combineReducers({
+// 	[profile.constants.NAME]: profile.reducer
+// });
 
 export default combineReducers({
-  [nameField.constants.NAME]: nameField.reducer
+	[profile.constants.NAME]: profile.reducer
 });

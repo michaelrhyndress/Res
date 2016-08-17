@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import datetime
 
 ADMINS = [('Michael Rhyndress', 'michaelrhyndress@gmail.com')]
 
@@ -29,6 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1"]
 
+API_ROOT = "{}://{}:{}/@api/{}".format("http", "localhost", "8000", "v1")
 
 # Application definition
 
@@ -39,8 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
     'webpack_loader',
+    'rest_framework',
     'lazysignup',
+    'userdetails',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -83,17 +88,17 @@ WSGI_APPLICATION = 'resify.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'HOST': 'postgres',
-#         'PORT': 5432,
-#     }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'localhost',
+        'PORT': 5432,
     }
+    # 'default': {
+ #        'ENGINE': 'django.db.backends.sqlite3',
+ #        'NAME': 'mydatabase',
+ #    }
 }
 
 #Sessions
@@ -101,7 +106,7 @@ DATABASES = {
 # days * (min/day) * (sec/min)
 SESSION_COOKIE_AGE = 30 * 1440 * 60
 
-#SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db' #Allows persistance
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'  # Allows persistence
 
 
 # CACHES = {
@@ -137,6 +142,25 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'lazysignup.backends.LazySignupBackend',
 )
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600),
+}
 
 # LOGIN_URL = 'resify_login'
 # LOGOUT_URL = 'resify_logout'

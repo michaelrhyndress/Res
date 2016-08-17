@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import { connect, Provider } from "react-redux";
+import { getProfile } from './profile/actions';
 //MUI
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -11,15 +12,22 @@ import DashboardTheme from '../../themes/DashboardTheme.js';
 import Frame from './_frame';
 import Sidebar from './_sidebar';
 
+//REDUX
+import store from "./store";
+
 // Css
 import "../../scss/resify/_dashboard/dashboard.scss";
 
+@connect((store) => {
+	return {
+
+	}
+})
 export default class Dashboard extends React.Component {
-	
+
 	constructor() {
 		super();
 		this.state = {
-			data: window._sharedData,
 			sidebar: {
 				render: true,
 				startOpen: true
@@ -46,7 +54,10 @@ export default class Dashboard extends React.Component {
 		return (
 			<MuiThemeProvider muiTheme={getMuiTheme(DashboardTheme)}>
 				<div class="dashboard__wrapper">
-					{this.state.sidebar.render ? <Sidebar open={this.state.sidebar.startOpen} /> : null }
+					{this.state.sidebar.render
+						? <Sidebar open={this.state.sidebar.startOpen} />
+						: null
+					}
 					<Frame options={options}/>
 				</div>
 			</MuiThemeProvider>
@@ -57,4 +68,6 @@ export default class Dashboard extends React.Component {
 
 const app = document.getElementById('dashboard');
 
-ReactDOM.render(<Dashboard />, app);
+ReactDOM.render(<Provider store={store}>
+	<Dashboard />
+</Provider>, app);

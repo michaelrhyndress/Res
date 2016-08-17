@@ -11,11 +11,11 @@ export default class Frame extends React.Component {
 					gettext("Edit Mode"),
 					gettext("Fullscreen")
 				],
-				classname	= classOptions[btnProps.fullwidth.startFull ? 0 : 1],
+				className	= classOptions[btnProps.fullwidth.startFull ? 0 : 1],
 				btnText		= btnOptions[btnProps.fullwidth.startFull ? 0 : 1];
 			
 		return (
-			<div class={classname}>
+			<div class={className}>
 				<h1>Frame</h1>
 				{ btnProps.fullwidth.render ?
 					<button 
@@ -24,7 +24,7 @@ export default class Frame extends React.Component {
 						{btnText}
 						</button> : null }
 				<div class="resify__frame--resume">
-						
+						{JSON.stringify(window._sharedData)}
 				</div>
 			</div>
 		);
