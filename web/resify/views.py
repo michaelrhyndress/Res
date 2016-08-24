@@ -2,6 +2,7 @@ from os import path
 import json
 from django.shortcuts import render
 from django.views.generic import View
+from django.http import JsonResponse
 
 # Decorators
 from django.utils.decorators import method_decorator
@@ -10,6 +11,7 @@ from lazysignup.decorators import allow_lazy_user
 from resifyapi import services as api_services
 
 app_name = "resify"
+
 
 class Dashboard(View):
     """
@@ -26,3 +28,18 @@ class Dashboard(View):
             "token": api_services.getToken(request.user, True),
         }
         return render(request, template, c)
+
+
+class RefreshToken(View):
+    """
+        Returns the current users token
+    """
+
+    @method_decorator(allow_lazy_user)
+    def get(self, request):
+        content = {'token': ''}
+        if request.user:
+            content = {
+                'token': api_services.getToken(request.user, True),
+            }
+        return JsonResponse(content, safe=False)

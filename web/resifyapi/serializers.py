@@ -60,6 +60,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'pk',
             'user',
             "label",
+            "summary",
             'website',
             'active_resume',
             'start_page',

@@ -18,16 +18,16 @@ const initialState: State = {
 		phone: "",
 		days: {
 			Sun: false,
-			Mon: false,
-			Tues: false,
-			Wed: false,
-			Thurs: false,
-			Fri: false,
+			Mon: true,
+			Tues: true,
+			Wed: true,
+			Thurs: true,
+			Fri: true,
 			Sat: false
 		},
 		time: {
-			start: "",
-			end: ""
+			start: null,
+			end: null
 		}
 	},
 	is_public: false,
@@ -68,12 +68,14 @@ export default function reducer(state=initialState, action): State {
 			});
 			break;
 		case t.SET_LABEL:
-			let label = action.payload;
-			return {...state, label};
+			return update(state, {
+				label: {$set: action.payload}
+			});
 			break;
 		case t.SET_SUMMARY:
-			let summary = action.payload.trim();
-			return {...state, summary};
+			return update(state, {
+				summary: {$set: action.payload}
+			});
 			break;
 		default:
 			return state;
