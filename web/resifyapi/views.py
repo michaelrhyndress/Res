@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 from userdetails.models import Resume, UserDetails
-from rest_framework import viewsets
 from .serializers import UserSerializer, ResumeSerializer, UserDetailsSerializer, ProfileSerializer
 from .permissions import IsCreatedByOrReadOnly, IsYouOrReadOnly
+from rest_framework import viewsets
 
 
 # Create your views here.
@@ -23,7 +23,6 @@ class ResumeViewSet(viewsets.ModelViewSet):
     serializer_class = ResumeSerializer
 
 
-
 class UserDetailsViewSet(viewsets.ModelViewSet):
     permission_classes = []
     queryset = UserDetails.objects\
@@ -32,8 +31,6 @@ class UserDetailsViewSet(viewsets.ModelViewSet):
     serializer_class = UserDetailsSerializer
 
 
-
-# ViewSets define the view behavior.
 class ProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [IsYouOrReadOnly, ]
     queryset = UserDetails.objects \
