@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
 from django.views.i18n import JavaScriptCatalog
-from .views import Dashboard
+from .views import Dashboard, RefreshToken
 
 
 def get_version():
@@ -37,6 +37,7 @@ urlpatterns = [
         name='dashboard-catalog'
     ),
     url(r'^@api/', include('resifyapi.urls')),
+    url(r'^@services/refresh_token/', RefreshToken.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^convert/', include('lazysignup.urls')),
     url(r'^$', Dashboard.as_view(), name="dashboard"),
