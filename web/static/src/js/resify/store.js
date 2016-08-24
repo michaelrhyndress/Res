@@ -37,13 +37,16 @@ const initialState = {
 	website: ""
 };
 
-Object.assign(window._sharedData.profile, initialState);
+// Object.assign(winprofiledow._sharedData., initialState);
 
-// for (var property in window._sharedData.profile) {
-// 	if (window._sharedData.profile.hasOwnProperty(property)) {
-//       console.log(property)
-//     }
-// }
+for (var property in window._sharedData.profile) {
+	if (window._sharedData.profile.hasOwnProperty(property)) {
+      if (window._sharedData.profile[property] === null){
+		  if (initialState.hasOwnProperty(property))
+		  window._sharedData.profile[property] = initialState[property];
+	  }
+    }
+}
 
 // if (window._sharedData.availability === null) {
 // 	window._sharedData.availability = initialState.availability;

@@ -129,3 +129,50 @@ export const setSummary = ( summary ) => {
     payload: summary
   });
 };
+
+
+//Contact
+export const setAvailabilityPhone = ( phone ) => {
+  let newAvail = {...window._sharedData.profile.availability, phone};
+  sendPatch(
+      getAPI(
+          "userdetails",
+          window._sharedData.profile.pk
+      ),
+      {availability: newAvail}
+  );
+  return ({
+    type: t.SET_AVAILABILITY_PHONE,
+	payload: phone
+  });
+};
+
+export const setAvailabilityDays = ( days ) => {
+  let newAvail = {...window._sharedData.profile.availability, days};
+  sendPatch(
+      getAPI(
+          "userdetails",
+          window._sharedData.profile.pk
+      ),
+      {availability: newAvail}
+  );
+  return ({
+    type: t.SET_AVAILABILITY_DAYS,
+    payload: days
+  });
+};
+
+export const setAvailabilityTime = ( time ) => {
+  let newAvail = {...window._sharedData.profile.availability, time};
+  sendPatch(
+      getAPI(
+          "userdetails",
+          window._sharedData.profile.pk
+      ),
+      {availability: newAvail}
+  );
+  return ({
+    type: t.SET_AVAILABILITY_TIME,
+    payload: time
+  });
+};

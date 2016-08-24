@@ -77,6 +77,31 @@ export default function reducer(state=initialState, action): State {
 				summary: {$set: action.payload}
 			});
 			break;
+		//Contact
+		case t.SET_AVAILABILITY_PHONE:
+			return update(state, {
+				availability: {
+					phone: {$set: action.payload}
+				}
+			});
+			break;
+
+		case t.SET_AVAILABILITY_DAYS:
+			return update(state, {
+				availability: {
+					days: {$set: action.payload}
+				}
+			});
+			break;
+
+		case t.SET_AVAILABILITY_TIME:
+			return update(state, {
+				availability: {
+					time: {$set: action.payload}
+				}
+			});
+			break;
+
 		default:
 			return state;
 	}

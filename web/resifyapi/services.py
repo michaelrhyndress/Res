@@ -16,7 +16,6 @@ def get_userdetails(pk=None):
 
 
 def getToken(user, toString=False):
-	token = None
 	jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 	jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 	payload = jwt_payload_handler(user)

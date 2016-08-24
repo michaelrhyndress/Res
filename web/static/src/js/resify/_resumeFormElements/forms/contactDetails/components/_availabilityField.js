@@ -2,7 +2,7 @@ import React from 'react';
 import {TimePickerRange, PillGroup} from '../../../ElementTypes';
 import { connect } from 'react-redux';
 import { PhoneField } from '../components';
-import { setAvailabilityDays, setAvailabilityTime } from '../actions';
+import { setAvailabilityDays, setAvailabilityTime } from '../../../../profile/actions';
 
 @connect((store) => {
 	return {
@@ -32,9 +32,7 @@ export class AvailabilityField extends React.Component {
 	
 	handleChangePillGroup = (days) => {
 		console.log(days);
-		this.props.dispatch(setAvailabilityDays(
-			...this.props, days
-		));
+		this.props.dispatch(setAvailabilityDays(days));
 	};
 	
 	render() {

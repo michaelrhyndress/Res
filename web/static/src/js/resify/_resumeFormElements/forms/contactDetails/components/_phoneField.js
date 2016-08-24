@@ -1,7 +1,8 @@
 import React from 'react';
 import {TextField} from 'material-ui';
 import { connect } from 'react-redux';
-import { setAvailabilityPhone } from '../actions';
+import { setAvailabilityPhone } from '../../../../profile/actions';
+
 
 @connect((store) => {
 	return {
