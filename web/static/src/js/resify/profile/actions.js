@@ -1,5 +1,6 @@
 import * as t from './actionTypes';
 import axios from 'axios';
+import store from '../store';
 
 const version = 1,
       api = axios.create({
@@ -148,7 +149,7 @@ export const setAvailabilityPhone = ( phone ) => {
 };
 
 export const setAvailabilityDays = ( days ) => {
-  let newAvail = {...window._sharedData.profile.availability, days};
+  let newAvail = {...store.getState().profile.availability, days};
   sendPatch(
       getAPI(
           "userdetails",
@@ -163,7 +164,7 @@ export const setAvailabilityDays = ( days ) => {
 };
 
 export const setAvailabilityTime = ( time ) => {
-  let newAvail = {...window._sharedData.profile.availability, time};
+  let newAvail = {...store.getState().profile.availability, time};
   sendPatch(
       getAPI(
           "userdetails",

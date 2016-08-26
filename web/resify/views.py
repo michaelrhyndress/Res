@@ -25,7 +25,7 @@ class Dashboard(View):
         data = api_services.get_userdetails(user_pk).json()
         c = {
             "data": json.dumps(data),
-            "token": api_services.getToken(request.user, True),
+            "token": api_services.get_token(request.user, True),
         }
         return render(request, template, c)
 
@@ -40,6 +40,6 @@ class RefreshToken(View):
         content = {'token': ''}
         if request.user:
             content = {
-                'token': api_services.getToken(request.user, True),
+                'token': api_services.get_token(request.user, True),
             }
         return JsonResponse(content, safe=False)

@@ -2,15 +2,21 @@ from django.contrib.auth.models import User
 from userdetails.models import Resume, UserDetails
 from .serializers import UserSerializer, ResumeSerializer, UserDetailsSerializer, ProfileSerializer
 from .permissions import IsCreatedByOrReadOnly, IsYouOrReadOnly
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 
 
-# Create your views here.
+class UserFilter(filters.FilterSet):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
     # permission_classes = [IsYouOrReadOnly, ]
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    filter_class = UserFilter
 
 
 class ResumeViewSet(viewsets.ModelViewSet):
