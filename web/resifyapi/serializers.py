@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from userdetails.models import Resume, UserDetails
 from rest_framework import serializers
 
+
 # Serializers define the API representation.
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,8 +10,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('pk', 'username', 'email', 'first_name', 'last_name')
         
 
-
-# Serializers define the API representation.
 class ResumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Resume

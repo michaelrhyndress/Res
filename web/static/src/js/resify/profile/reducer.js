@@ -1,6 +1,7 @@
 import * as t from './actionTypes';
+import uuid from 'uuid';
 import State from './model';
-import update from 'react/lib/update'
+import update from 'react/lib/update';
 
 
 
@@ -32,12 +33,30 @@ const initialState: State = {
 	},
 	is_public: false,
 	location: null,
-	resumes: [],
+	resumes: {
+		entities: [
+			{
+				id: {
+					work: [{
+						id: 0,
+						isVolunteer: false,
+						company: "",
+						position: "",
+						website: "",
+						startDate: "",
+						endDate: "",
+						isCurrent: false,
+						summary: "",
+						order: 0
+					}]
+				}
+			}
+		]
+	},
 	social_profiles: null,
 	start_page: 1,
 	website: ""
 };
-
 
 export default function reducer(state=initialState, action): State {
 	switch (action.type) {
@@ -45,6 +64,7 @@ export default function reducer(state=initialState, action): State {
 			let profile = Object.assign({}, ...state, action.payload.data);
 			return profile;
 			break;
+
 		//UserDetails
 		case t.SET_FIRSTNAME:
 			return update(state, {
@@ -77,6 +97,7 @@ export default function reducer(state=initialState, action): State {
 				summary: {$set: action.payload}
 			});
 			break;
+
 		//Contact
 		case t.SET_AVAILABILITY_PHONE:
 			return update(state, {
@@ -102,8 +123,37 @@ export default function reducer(state=initialState, action): State {
 			});
 			break;
 
+		//Work
+		case t.ADD_WORK:
+			let newWorkItem =  {...initialState.resumes.entities[0].id.work[0]};
+			newWorkItem.id = uuid.v4();
+			newWorkItem.order = action.order;
+
+			return update(state, {
+				resumes: {
+					entities: {
+						[state.active_resume]: {
+							work: {$push: [newWorkItem]}
+						}
+					}
+				}
+			});
+			break;
+		case t.DELETE_WORK:
+		case t.SET_WORK_POSITION:
+		case t.SET_WORK_EMPLOYER:
+		case t.SET_WORK_SUMMARY:
+			return update(state, {
+				resumes: {
+					entities: {
+						[state.active_resume]: {
+							work: {$set: action.payload}
+						}
+					}
+				}
+			});
+			break;
 		default:
 			return state;
 	}
-
 };

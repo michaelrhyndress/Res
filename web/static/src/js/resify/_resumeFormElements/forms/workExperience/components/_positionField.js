@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
 import { TextField } from 'material-ui';
 import { connect } from 'react-redux';
-import { setPosition } from '../actions';
+import { setWorkPosition } from '../../../../profile/actions';
 
-@connect((store, ownProps) => {
-	const _this = store.Work[ownProps.parent];
-	// console.log(_this.position);
-	return {
-		position: _this.position
-	}
-})
+@connect()
 export class PositionField extends Component {
 
 	static propTypes = {
-		parent: React.PropTypes.number
+		parent: React.PropTypes.string
 	};
 
 	handleChange = (event) => {
-		this.props.dispatch(setPosition(
+		this.props.dispatch(setWorkPosition(
 			this.props.parent,
 			event.target.value
 		));
 	};
 
 	render() {
+		console.log(this.props.position);
 		return (
 			<TextField
 				id="experience.set.position"

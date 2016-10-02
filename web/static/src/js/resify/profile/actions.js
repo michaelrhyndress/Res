@@ -1,5 +1,6 @@
 import * as t from './actionTypes';
 import axios from 'axios';
+import store from '../store';
 
 const version = 1,
       api = axios.create({
@@ -12,13 +13,13 @@ const version = 1,
 
 
 const getAPI = (call, pk = undefined) => {
-  if (typeof pk == "number") {
+  if (typeof pk == "number" || typeof pk == "string") {
     call = `${call}/${pk}`;
   }
   return `/${call}/`;
 };
 
-const sendPatch = (path, payload, func=undefined) => {
+const sendPatch = (path, payload, reattempt=true, func=undefined) => {
     api({
       method: 'PATCH',
       url: path,
@@ -31,9 +32,11 @@ const sendPatch = (path, payload, func=undefined) => {
       console.log("saved");
     }).catch(function (error) {
       console.log(error);
-      console.log("reattempting...");
-      refreshToken();
-      sendPatch(path, payload, func);
+      if (reattempt) {
+        console.log("reattempting...");
+        refreshToken();
+        sendPatch(path, payload, func);
+      }
     });
 };
 
@@ -148,7 +151,7 @@ export const setAvailabilityPhone = ( phone ) => {
 };
 
 export const setAvailabilityDays = ( days ) => {
-  let newAvail = {...window._sharedData.profile.availability, days};
+  let newAvail = {...store.getState().profile.availability, days};
   sendPatch(
       getAPI(
           "userdetails",
@@ -163,7 +166,7 @@ export const setAvailabilityDays = ( days ) => {
 };
 
 export const setAvailabilityTime = ( time ) => {
-  let newAvail = {...window._sharedData.profile.availability, time};
+  let newAvail = {...store.getState().profile.availability, time};
   sendPatch(
       getAPI(
           "userdetails",
@@ -174,5 +177,99 @@ export const setAvailabilityTime = ( time ) => {
   return ({
     type: t.SET_AVAILABILITY_TIME,
     payload: time
+  });
+};
+
+//Work
+export const addWork = ( id, ord ) => {
+  return ({
+    type: t.ADD_WORK,
+    order: ord
+  });
+};
+
+export const deleteWork = ( id ) => {
+  let deletedWork = [
+      ...store.getState().profile.resumes.entities[window._sharedData.profile.active_resume].work
+  ].filter(function (workItem) {
+      return workItem.id != id;
+  });
+
+  sendPatch(
+      getAPI(
+          "resumes",
+          window._sharedData.profile.active_resume
+      ),
+      {work: deletedWork}
+  );
+
+  return({
+    type: t.DELETE_WORK,
+    payload: deletedWork
+  })
+};
+
+export const setWorkPosition = (parent, payload) => {
+  let updatedWorkPosition = [...store.getState().profile.resumes.entities[window._sharedData.profile.active_resume].work];
+
+  for (let workItem of updatedWorkPosition) {
+      if (workItem.id === parent) {
+          workItem.position = payload;
+      }
+  }
+
+  sendPatch(
+      getAPI(
+          "resumes",
+          window._sharedData.profile.active_resume
+      ),
+      {work: updatedWorkPosition}
+  );
+  return ({
+    type: t.SET_WORK_POSITION,
+    payload : updatedWorkPosition
+  });
+};
+
+export const setWorkEmployer = (parent, payload) => {
+
+    let updatedWorkEmployer = [...store.getState().profile.resumes.entities[window._sharedData.profile.active_resume].work];
+
+    for (let workItem of updatedWorkEmployer) {
+        if (workItem.id === parent) {
+            workItem.company = payload;
+        }
+    }
+    sendPatch(
+        getAPI(
+            "resumes",
+            window._sharedData.profile.active_resume
+        ),
+        {work: updatedWorkEmployer}
+    );
+    return ({
+        type: t.SET_WORK_EMPLOYER,
+        payload : updatedWorkEmployer
+  });
+};
+
+export const setWorkSummary = (parent, payload) => {
+    let updatedWorkSummary = [...store.getState().profile.resumes.entities[window._sharedData.profile.active_resume].work];
+
+    for (let workItem of updatedWorkSummary) {
+        if (workItem.id === parent) {
+            workItem.summary = payload;
+        }
+    }
+    sendPatch(
+        getAPI(
+            "resumes",
+            window._sharedData.profile.active_resume
+        ),
+        {work: updatedWorkSummary}
+  );
+  return ({
+    type: t.SET_WORK_SUMMARY,
+    payload : updatedWorkSummary
   });
 };

@@ -1,8 +1,14 @@
 import React from "react";
+import { connect, Provider } from "react-redux";
 
 //css
 import "../../scss/resify/_frame/frame.scss"
 
+@connect((store) => {
+	return {
+		profile: store.profile
+	}
+})
 export default class Frame extends React.Component {
 	render() {
 		const 	btnProps	= this.props.options.btn,
@@ -24,7 +30,7 @@ export default class Frame extends React.Component {
 						{btnText}
 						</button> : null }
 				<div class="resify__frame--resume">
-						{JSON.stringify(window._sharedData)}
+						{JSON.stringify(this.props.profile, null, '\t')}
 				</div>
 			</div>
 		);

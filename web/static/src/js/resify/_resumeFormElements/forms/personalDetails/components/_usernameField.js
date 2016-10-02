@@ -1,11 +1,17 @@
 import React from 'react';
+import axios from 'axios';
 import { TextField } from "material-ui";
 import { connect } from 'react-redux';
 import { setUsername } from '../../../../profile/actions';
-
 import Theme from "../../../../../../themes/FormTheme";
 
-// TODO: Validation, Cleaning up & async saving
+
+const version = 1,
+      api = axios.create({
+        baseURL: `http://127.0.0.1:8000/@api/v${version}`
+      });
+
+
 @connect((store) => {
 	return {
 		username: store.profile.user.username
@@ -19,13 +25,14 @@ export class UsernameField extends React.Component {
 			FAILURE: gettext("Change not saved."),
 			PENDING: gettext("Checking..."),
 			AVAILABLE: gettext("Available! Hit 'Enter' to save."),
+			TAKEN: gettext("Username is not available."),
 			TITLE_FIELD: gettext("Username"),
 			LENGTH_ERROR_SHORT: gettext("Must be at least 5 characters"),
 			FORMATTING_ERROR: gettext("Only use letters, numbers and '_'")
-		}
+		};
 		
 		return WORD_MAP[option] || null;
-	}
+	};
 
 	// TODO: Better method management and saving of validity
 	constructor() {
@@ -42,11 +49,22 @@ export class UsernameField extends React.Component {
 	
 	
 	checkAvailability(string) {
-		this.setError({error: {text: this.get("PENDING"), color: Theme.palette.successColor}});
-		
-		//Just a test for async
-		this.setError({error: {text: this.get("AVAILABLE"), color: Theme.palette.successColor}});
-		
+		this.setError({error: {text: this.get("PENDING"), color: Theme.palette.infoColor}});
+		api({
+			method: 'GET',
+			url: '/users/',
+			params: {'username': string},
+			headers: { 'Authorization': `JWT ${window._services.api.token}`, 'Content-Type':'application/json' }
+		}).then((e) => {
+			if (e.data.length === 0) {
+				this.setError({error: {text: this.get("AVAILABLE"), color: Theme.palette.successColor}});
+			} else {
+				this.setError({error: {text: this.get("TAKEN"), color: Theme.palette.warningColor}});
+			}
+		}).catch(function (error) {
+			console.log(error);
+		});
+
 		return true;
 	}
 	
@@ -75,31 +93,37 @@ export class UsernameField extends React.Component {
 			this.checkAvailability(slug.slug); //Store last checked so I can use it for onChange
 		}
 		this.updatePath(slug.slug);
-	}
+	};
 	
 	handleKeyEvents = (event) => {
 		const val = event.target.value;
 	    if(event.key == 'Enter'){
+			if (val == this.props.username) {
+				return;
+			}
 	     	if(!this.slugify(event, val).valid || !this.checkLength(val)){
 				 this.setError({error: {text: this.get("FAILURE"), color: Theme.palette.dangerColor}});
 				 return;
 			} 
 			else {
-				console.log("saved");
-				this.props.dispatch(setUsername(val));
-				this.setError({error: {text: this.get("SUCCESS"), color: Theme.palette.successColor}});
+				if (this.state.error.color === Theme.palette.successColor) {
+					this.props.dispatch(setUsername(val));
+					this.setError({error: {text: this.get("SUCCESS"), color: Theme.palette.successColor}});
+				}
+				else {
+					this.setError({error: {text: this.get("FAILURE"), color: Theme.palette.dangerColor}});
+				}
 				return;
 			}
 	     }
-	}
+	};
 	
 	handleLeaveField = (event) => {
-		var valid	= false;
-		valid = this.checkLength(event.target.value);
-		console.log("Saved?");
-	}
+		event.target.value = this.props.username;
+		this.setError();
+	};
 
-	setError(error="") {
+	setError = (error="") => {
 		if (error === "") {
 			this.setState({
 				error: this.defaultError,
@@ -108,9 +132,9 @@ export class UsernameField extends React.Component {
 		} else {
 			this.setState(error);
 		}
-	}
+	};
 	
-	slugify(e, string) {
+	slugify = (e, string) => {
 		let valid = false,
 		slug = string
 	    .toString()
@@ -130,11 +154,11 @@ export class UsernameField extends React.Component {
 		}
 		
 		return {slug: slug, valid: valid};
-	}
+	};
 	
-	updatePath(slug) {
+	updatePath = (slug) => {
 		this.setError({label: this.get("TITLE_FIELD") +" - "+ window.location.href.split('?')[0] + slug});
-	}
+	};
 	
 	render() {
 
