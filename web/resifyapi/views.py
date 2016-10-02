@@ -23,9 +23,7 @@ class ResumeViewSet(viewsets.ModelViewSet):
     permission_classes = [IsCreatedByOrReadOnly,]
 
     queryset = Resume.objects\
-        .all()\
-        .filter(deleted_date=None)\
-        .filter(userdetails__is_public=True)
+        .all()
     serializer_class = ResumeSerializer
 
 

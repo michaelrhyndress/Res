@@ -12,7 +12,6 @@ const version = 1,
       });
 
 
-// TODO: Validation, Cleaning up & async saving
 @connect((store) => {
 	return {
 		username: store.profile.user.username

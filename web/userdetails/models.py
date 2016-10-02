@@ -66,14 +66,14 @@ class Resume(models.Model):
     summary = models.CharField(_("Resume summary"), max_length=255, blank=True)
     theme = models.ForeignKey('ResumeTheme', on_delete=models.SET_NULL, null=True, blank=True)
     # Data Fields
-    work = JSONField(null=True, blank=True)
-    education = JSONField(null=True, blank=True)
-    awards = JSONField(null=True, blank=True)
-    skills = JSONField(null=True, blank=True)
-    references = JSONField(null=True, blank=True)
+    work = JSONField(null=False, blank=True, default=[])
+    education = JSONField(null=False, blank=True, default=[])
+    awards = JSONField(null=False, blank=True, default=[])
+    skills = JSONField(null=False, blank=True, default=[])
+    references = JSONField(null=False, blank=True, default=[])
 
     # Created By
-    created_by = models.ForeignKey('UserDetails', on_delete=models.DO_NOTHING, related_name='resumes')
+    created_by = models.ForeignKey('UserDetails', on_delete=models.CASCADE, related_name='resumes')
 
     # Date info
     created_date = models.DateTimeField(_('date created'), auto_now_add=True)
@@ -108,8 +108,14 @@ class ResumeTheme(models.Model):
     is_active = models.BooleanField(default=False)
 
 
+# class Experience(models.Model):
+
+
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        UserDetails.objects.create(user=instance)
+        u = UserDetails.objects.create(user=instance)
+        r = Resume.objects.create(created_by=u)
+        u.active_resume = r
+        u.save()
 
 models.signals.post_save.connect(create_user_profile, sender=User)

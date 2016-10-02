@@ -10,6 +10,14 @@ export const SET_LABEL = "profile/label/SET";
 export const SET_SUMMARY = "profile/summary/SET";
 
 //Contact
-export const SET_AVAILABILITY_PHONE = "basics/phone/SET";
-export const SET_AVAILABILITY_DAYS = "basics/availableDays/SET";
-export const SET_AVAILABILITY_TIME = "basics/availableTime/SET";
+export const SET_AVAILABILITY_PHONE = "profile/phone/SET";
+export const SET_AVAILABILITY_DAYS = "profile/availableDays/SET";
+export const SET_AVAILABILITY_TIME = "profile/availableTime/SET";
+
+//Work
+export const ADD_WORK = "resume/work/ADD";
+export const DELETE_WORK = "resume/work/DELETE";
+export const SET_WORK_POSITION = "resume/work/position/SET";
+export const SET_WORK_EMPLOYER = "resume/work/employer/SET";
+export const SET_WORK_SUMMARY = "resume/work/summary/SET";
+export const SET_WORK_PERIOD = "resume/work/period/SET";

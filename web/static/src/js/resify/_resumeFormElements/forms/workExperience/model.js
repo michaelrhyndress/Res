@@ -1,5 +1,5 @@
 type WordExperienceForm = {
-    id?: Number;
+    id: String;
     isVolunteer: Boolean;
     company: String;
     position: String;

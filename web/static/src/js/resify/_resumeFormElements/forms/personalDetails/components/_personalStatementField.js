@@ -12,7 +12,7 @@ export class PersonalStatementField extends React.Component {
 
 	handleChange = (e, value) => {
 		this.props.dispatch(setSummary(value));
-	}
+	};
 	
 	get = (option) => {
 		const WORD_MAP = {
@@ -20,7 +20,7 @@ export class PersonalStatementField extends React.Component {
 			HINT_FIELD: gettext("Let's talk about you.")
 		};
 		return WORD_MAP[option] || null;
-	}
+	};
 	
 	render() {
 		return (

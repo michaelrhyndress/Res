@@ -20,9 +20,8 @@ class Dashboard(View):
 
     @method_decorator(allow_lazy_user)
     def get(self, request, *args, **kwargs):
-        user_pk = request.user.userdetails.pk
         template = path.join(app_name, 'dashboard.html')
-        data = api_services.get_userdetails(user_pk).json()
+        data = api_services.get_userdetails(request.user.pk).json()
         c = {
             "data": json.dumps(data),
             "token": api_services.get_token(request.user, True),
